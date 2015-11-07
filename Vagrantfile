@@ -89,12 +89,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           git_repo: "git@github.com:boosterllc/fulcrum.git",
           revision: "master",
           git_actoin: "checkout"
-        }
+        },
+        packages: [
+          {name: "xvfb"}
+        ]
       }
     }
 
     chef.run_list = [
       "recipe[git::default]",
+      "recipe[dev_env::pre_process]",
       "recipe[dev_env::default]"
     ]
   end
