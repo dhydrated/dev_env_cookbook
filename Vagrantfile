@@ -91,7 +91,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           git_actoin: "checkout"
         },
         packages: [
-          {name: "xvfb"}
+          {name: "xvfb"},
+          {name: "imagemagick"}
         ]
       }
     }
