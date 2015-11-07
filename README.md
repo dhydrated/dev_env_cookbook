@@ -39,4 +39,4 @@ Include `booster-dev-cookbook` in your node's `run_list`:
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Taufek Johar (<taufek@gmail.com>)
