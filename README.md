@@ -1,10 +1,10 @@
-# booster-dev-cookbook-cookbook
+# *dev_env* Cookbook
 
-TODO: Enter the cookbook description here.
+Cookbook to setup development environment.
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+Tested in Ubuntu.
 
 ## Attributes
 
@@ -16,23 +16,23 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['booster-dev-cookbook']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['dev_env']['app']['checkout_path']</tt></td>
+    <td>String</td>
+    <td>Project GIT repository url</td>
+    <td><tt>nil</tt></td>
   </tr>
 </table>
 
 ## Usage
 
-### booster-dev-cookbook::default
+### dev_env::default
 
-Include `booster-dev-cookbook` in your node's `run_list`:
+Include `dev_env` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[booster-dev-cookbook::default]"
+    "recipe[dev_env::default]"
   ]
 }
 ```
