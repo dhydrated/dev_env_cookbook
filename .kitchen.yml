@@ -12,4 +12,11 @@ platforms:
 suites:
   - name: default
     run_list:
-    attributes:
+      - recipe[dev_env::pre_process]
+    attributes: {
+      dev_env: {
+        packages: [
+          { name: "xvfb" }
+        ]
+      }
+    }
