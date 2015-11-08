@@ -37,7 +37,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
+  config.vm.network "forwarded_port", guest: 22, host: 2220
+  config.vm.network "forwarded_port", guest: 3000, host: 3001
 
 
   # Share an additional folder to the guest VM. The first argument is
@@ -88,19 +89,30 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           checkout_path: "/vagrant/projects/fulcrum",
           git_repo: "git@github.com:boosterllc/fulcrum.git",
           revision: "master",
-          git_actoin: "checkout"
+          git_action: "checkout"
         },
         packages: [
           {name: "xvfb"},
+          {name: "rake"},
+          {name: "lua5.2"},
+          {name: "lua5.2-dev"},
+          {name: "vim"},
           {name: "imagemagick"}
-        ]
+        ],
+        yadr: {
+          checkout_path: "/home/vagrant/.yadr",
+          git_repo: "https://github.com/skwp/dotfiles.git",
+          revision: "master",
+          git_action: "checkout"
+        },
       }
     }
 
     chef.run_list = [
       "recipe[git::default]",
       "recipe[dev_env::pre_process]",
-      "recipe[dev_env::default]"
+      "recipe[dev_env::default]",
+      "recipe[dev_env::yadr]"
     ]
   end
 

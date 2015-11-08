@@ -7,17 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-directory "/tmp/vagrant-chef/.ssh" do
-  owner node[:dev_env][:user]
-  recursive true
-end
-
-cookbook_file "/tmp/vagrant-chef/wrap-ssh4git.sh" do
-  source "wrap-ssh4git.sh"
-  owner node[:dev_env][:user]
-  mode "700"
-end
-
 directory node[:dev_env][:app][:checkout_path] do
   owner node[:dev_env][:user]
   group node[:dev_env][:user]
