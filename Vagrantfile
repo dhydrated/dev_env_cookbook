@@ -84,12 +84,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         server_repl_password: 'replpass'
       },
       dev_env: {
-        app: {
-          checkout_path: "/vagrant/projects/fulcrum",
-          git_repo: "git@github.com:boosterllc/fulcrum.git",
-          revision: "master",
-          git_action: "checkout"
-        },
+        apps: [
+          {
+            checkout_path: "/vagrant/projects/fulcrum",
+            git_repo: "git@github.com:boosterllc/fulcrum.git",
+            revision: "master",
+            git_action: "checkout",
+            user: "vagrant",
+            post_commands: <<-EOH
+              gem install bundler
+              rake bundle install
+              rake db:setup
+              rake db:migrate
+              rake db:seed
+            EOH
+          }
+        ],
         packages: [
           {name: "xvfb"},
           {name: "rake"},
@@ -97,13 +107,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           {name: "lua5.2-dev"},
           {name: "vim"},
           {name: "imagemagick"}
-        ],
-        yadr: {
-          checkout_path: "/home/vagrant/.yadr",
-          git_repo: "https://github.com/skwp/dotfiles.git",
-          revision: "master",
-          git_action: "checkout"
-        },
+        ]
       }
     }
 
@@ -111,7 +115,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       "recipe[git::default]",
       "recipe[dev_env::pre_process]",
       "recipe[dev_env::default]",
-      "recipe[dev_env::yadr]"
     ]
   end
 
