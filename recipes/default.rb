@@ -7,17 +7,28 @@
 # All rights reserved - Do Not Redistribute
 #
 
-directory node[:dev_env][:app][:checkout_path] do
-  owner node[:dev_env][:user]
-  group node[:dev_env][:user]
-  mode "0755"
-  recursive true
-  action :create
-end
+node[:dev_env][:apps].each do |app|
+  directory app[:checkout_path] do
+    owner app[:user]
+    group app[:user]
+    mode "0755"
+    recursive true
+    action :create
+  end
 
-git node[:dev_env][:app][:checkout_path] do
-  repository node[:dev_env][:app][:git_repo]
-  revision node[:dev_env][:app][:revision]
-  action node[:dev_env][:app][:git_action]
-  ssh_wrapper "/tmp/vagrant-chef/wrap-ssh4git.sh"
+  git app[:checkout_path] do
+    user app[:user]
+    group app[:user]
+    repository app[:git_repo]
+    revision app[:revision]
+    action app[:git_action]
+    ssh_wrapper "/tmp/vagrant-chef/wrap-ssh4git.sh"
+  end
+
+  bash 'executing post_commands' do
+    cwd app[:checkout_path]
+    user app[:user]
+    group app[:user]
+    code app[:post_commands]
+  end
 end
