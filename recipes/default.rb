@@ -17,6 +17,8 @@ node[:dev_env][:apps].each do |app|
   end
 
   git app[:checkout_path] do
+    user app[:user]
+    group app[:user]
     repository app[:git_repo]
     revision app[:revision]
     action app[:git_action]
