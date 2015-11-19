@@ -1,3 +1,5 @@
+default[:dev_env][:user]=nil
+
 # default[:dev_env][:packages]=[
 #   {
 #     name: "<package_name>
