@@ -27,6 +27,8 @@ node[:dev_env][:apps].each do |app|
 
   bash 'executing post_commands' do
     cwd app[:checkout_path]
+    user app[:user]
+    group app[:user]
     code app[:post_commands]
   end
 end
