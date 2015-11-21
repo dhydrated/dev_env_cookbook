@@ -25,10 +25,10 @@ node[:dev_env][:apps].each do |app|
     ssh_wrapper "/tmp/vagrant-chef/wrap-ssh4git.sh"
   end
 
-  bash 'executing post_commands' do
+  execute 'executing post_commands' do
     cwd app[:checkout_path]
     user app[:user]
     group app[:user]
-    code app[:post_commands]
+    command app[:post_commands]
   end
 end
