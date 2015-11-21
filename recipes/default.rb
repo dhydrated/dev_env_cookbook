@@ -29,6 +29,7 @@ node[:dev_env][:apps].each do |app|
     cwd app[:checkout_path]
     user app[:user]
     group app[:user]
+    path app[:path] if app[:path]
     command app[:post_commands]
   end
 end
