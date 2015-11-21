@@ -30,6 +30,7 @@ node[:dev_env][:apps].each do |app|
     user app[:user]
     group app[:user]
     path app[:path] if app[:path]
+    environment app[:environment] if app[:environment]
     command app[:post_commands]
   end
 end
