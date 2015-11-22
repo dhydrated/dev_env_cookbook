@@ -29,6 +29,7 @@ node[:dev_env][:apps].each do |app|
     cwd app[:checkout_path]
     user app[:user]
     group app[:user]
+    ignore_failure app[:post_commands_ignore_failure]
     code app[:post_commands]
   end
 end
