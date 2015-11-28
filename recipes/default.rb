@@ -14,6 +14,7 @@ node[:dev_env][:apps].each do |app|
     mode "0755"
     recursive true
     action :create
+    not_if { Dir.exists? app[:checkout_path] }
   end
 
   git app[:checkout_path] do
@@ -31,5 +32,6 @@ node[:dev_env][:apps].each do |app|
     group app[:user]
     ignore_failure app[:post_commands_ignore_failure]
     code app[:post_commands]
+    not_if { Dir.exists? app[:checkout_path] }
   end
 end
