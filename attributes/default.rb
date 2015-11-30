@@ -14,6 +14,7 @@ default[:dev_env][:packages]=[]
 #     revision: "master",
 #     git_action: "checkout",
 #     user: "user",
+#     retries: 5,
 #     post_commands_ignore_failure: true,
 #     post_commands: "<commands_to_execute>"
 #   }

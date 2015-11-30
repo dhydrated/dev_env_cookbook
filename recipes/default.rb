@@ -23,6 +23,7 @@ node[:dev_env][:apps].each do |app|
     repository app[:git_repo]
     revision app[:revision]
     action app[:git_action]
+    retries app[:retries] || 5
     ssh_wrapper "/tmp/vagrant-chef/wrap-ssh4git.sh"
   end
 
