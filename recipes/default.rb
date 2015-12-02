@@ -8,13 +8,14 @@
 #
 
 node[:dev_env][:apps].each do |app|
-  directory app[:checkout_path] do
+  *parent_path, last_path = app[:checkout_path].split("/")
+  directory parent_path do
     owner app[:user]
     group app[:user]
     mode "0755"
     recursive true
     action :create
-    not_if { Dir.exists? app[:checkout_path] }
+    not_if { Dir.exists? parent_path }
   end
 
   git app[:checkout_path] do
