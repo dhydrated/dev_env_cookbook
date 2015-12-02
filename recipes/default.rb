@@ -8,7 +8,9 @@
 #
 
 node[:dev_env][:apps].each do |app|
-  *parent_path, last_path = app[:checkout_path].split("/")
+  *parent_path_sections, last_path_section = app[:checkout_path].split("/")
+  parent_path = parent_path_sections.join("/")
+
   directory parent_path do
     owner app[:user]
     group app[:user]
