@@ -14,7 +14,7 @@ node[:dev_env][:apps].each do |app|
   directory parent_path do
     owner app[:user]
     group app[:user]
-    mode "0755"
+    mode "0775"
     recursive true
     action :create
     not_if { Dir.exists? parent_path }
