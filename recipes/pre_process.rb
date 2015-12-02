@@ -10,5 +10,5 @@ end
 cookbook_file "/tmp/vagrant-chef/wrap-ssh4git.sh" do
   source "wrap-ssh4git.sh"
   owner node[:dev_env][:user]
-  mode "700"
+  mode "0755"
 end
