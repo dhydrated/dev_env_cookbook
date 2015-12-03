@@ -23,6 +23,7 @@ node[:dev_env][:apps].each do |app|
   git app[:checkout_path] do
     user app[:user]
     group app[:user]
+    ignore_failure app[:git_ignore_failure] || false
     repository app[:git_repo]
     revision app[:revision]
     action app[:git_action]
@@ -36,7 +37,7 @@ node[:dev_env][:apps].each do |app|
     cwd app[:checkout_path]
     user app[:user]
     group app[:user]
-    ignore_failure app[:post_commands_ignore_failure]
+    ignore_failure app[:post_commands_ignore_failure] || false
     code app[:post_commands]
     action :nothing
   end
