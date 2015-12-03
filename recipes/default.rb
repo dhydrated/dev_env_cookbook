@@ -26,6 +26,7 @@ node[:dev_env][:apps].each do |app|
     repository app[:git_repo]
     revision app[:revision]
     action app[:git_action]
+    timeout app[:timeout] || 600
     retries app[:retries] || 5
     ssh_wrapper "/tmp/vagrant-chef/wrap-ssh4git.sh"
     notifies :run, "bash[executing post_commands]", :delayed
