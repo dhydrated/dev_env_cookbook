@@ -28,6 +28,7 @@ node[:dev_env][:apps].each do |app|
     action app[:git_action]
     retries app[:retries] || 5
     ssh_wrapper "/tmp/vagrant-chef/wrap-ssh4git.sh"
+    notifies :run, "bash[executing post_commands]", :delayed
   end
 
   bash 'executing post_commands' do
@@ -36,6 +37,6 @@ node[:dev_env][:apps].each do |app|
     group app[:user]
     ignore_failure app[:post_commands_ignore_failure]
     code app[:post_commands]
-    not_if { Dir.exists? app[:checkout_path] }
+    action :nothing
   end
 end
