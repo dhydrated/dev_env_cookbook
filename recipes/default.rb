@@ -39,5 +39,6 @@ node[:dev_env][:apps].each do |app|
     ignore_failure app[:post_commands_ignore_failure] || false
     code app[:post_commands]
     action :nothing
+    not_if app[:post_commands].nil?
   end
 end
