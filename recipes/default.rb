@@ -27,10 +27,12 @@ node[:dev_env][:apps].each do |app|
     timeout app[:timeout] || 600
     retries app[:retries] || 5
     ssh_wrapper "/tmp/vagrant-chef/wrap-ssh4git.sh"
-    notifies :run, "bash[executing post_commands]", :delayed
+    notifies :run,
+             "bash[executing post_commands for #{app[:checkout_path]}]",
+             :delayed
   end
 
-  bash 'executing post_commands' do
+  bash "executing post_commands for #{app[:checkout_path]}" do
     cwd app[:checkout_path]
     user app[:user]
     group app[:user]
