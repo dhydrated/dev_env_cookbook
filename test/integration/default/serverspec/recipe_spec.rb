@@ -16,3 +16,7 @@ end
 describe file "/vagrant/home/projects/sample_app/run_post_commands" do
   it { should exist }
 end
+
+describe file "/tmp/vagrant-chef/wrap-ssh4git.sh" do
+  it { should exist }
+end
