@@ -1,6 +1,11 @@
 # *dev_env* Cookbook
 
-Cookbook to setup development environment.
+A simple Cookbook to setup development environment. Here it takes care the usual procedures to setup a local development which are:
+1) Install NIX packages.
+2) Git checkout your project.
+3) Run some bash commands to setup the project.
+
+It is also able to setup multiple projects.
 
 ## Supported Platforms
 
@@ -99,7 +104,7 @@ Tested in Ubuntu.
 
 ### dev\_env::pre_process
 
-Include `dev_env` in your node's `run_list`:
+`dev_env::pre_process` recipe. This is to install NIX packages.
 
 ```json
 {
@@ -111,20 +116,42 @@ Include `dev_env` in your node's `run_list`:
       packages: [
          { name: "curl" },
          { name: "apache2" },
-     ]
+      ]
+    }
   }
 }
 ```
 
 ### dev_env::default
 
-Include `dev_env` in your node's `run_list`:
+`dev_env::default` recipe. This is to setup projects.
 
 ```json
 {
   "run_list": [
     "recipe[dev_env::default]"
-  ]
+  ],
+  "json": {
+    dev_env: {
+      apps: [
+        {
+          checkout_path: "/vagrant/home/projects/sample_app",
+          git_repo: "git@github.com:railstutorial/sample_app.git",
+          revision: "master",
+          git_action: "checkout",
+          user: "vagrant",
+          post_commands: <<-EOH
+            gem install bundler
+            rake bundle install
+            rake db:seed
+          EOH
+        },
+        {
+          ...
+        }
+      ]
+    }
+  }
 }
 ```
 
