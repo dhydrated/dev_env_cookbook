@@ -16,9 +16,27 @@ Tested in Ubuntu.
     <th>Default</th>
   </tr>
   <tr>
+    <td><tt>[:dev_env][:user]</tt></td>
+    <td>String</td>
+    <td>User to that will be assigned to own the <tt>wrap-ssh4git.sh</tt> file. This file is required to ignore the host checks when running <tt>git clone/checkout</tt>.</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
+    <td><tt>[:dev_env][:packages]</tt></td>
+    <td>Array</td>
+    <td>Array of Hash that contains list of NIX packages to be installed. <tt>package</tt> in below list will refer to the Hash object in this Array.</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
+    <td><tt>package[:name]</tt></td>
+    <td>String</td>
+    <td>Name of NIX package you wish to install.</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
     <td><tt>[:dev_env][:apps]</tt></td>
     <td>Array</td>
-    <td>Array of Hash.</td>
+    <td>Array of Hash that contains list of project/app to be installed. <tt>app</tt> in below list will refer to the Hash object in this Array.</td>
     <td><tt>nil</tt></td>
   </tr>
   <tr>
@@ -32,7 +50,31 @@ Tested in Ubuntu.
     <td>String</td>
     <td>Git repository URL.</td>
     <td><tt>nil</tt></td>
-  </tr> 
+  </tr>  
+  <tr>
+    <td><tt>app[:revision]</tt></td>
+    <td>String</td>
+    <td>Git revision or branch to be used for checkout.</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
+    <td><tt>app[:git_action]</tt></td>
+    <td>String</td>
+    <td>Git action. Possible values are either <tt>checkout</tt> or <tt>sync</tt></td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
+    <td><tt>app[:timeout]</tt></td>
+    <td>Integer</td>
+    <td>Timeout (in seconds) set for <tt>git</tt> execution.</td>
+    <td><tt>600</tt></td>
+  </tr>
+  <tr>
+    <td><tt>app[:retries]</tt></td>
+    <td>Integer</td>
+    <td>Number of retries if the <tt>git</tt> execution fails.</td>
+    <td><tt>5</tt></td>
+  </tr>
   <tr>
     <td><tt>app[:git_ignore_failure]</tt></td>
     <td>Boolean</td>
@@ -45,12 +87,17 @@ Tested in Ubuntu.
     <td>User that will be assigned for the project permission.</td>
     <td><tt>nil</tt></td>
   </tr>
+  <tr>
+    <td><tt>app[:post_commands]</tt></td>
+    <td>String</td>
+    <td>Bash command to run from the checkout path after the <tt>git</tt> execution completed.</td>
+    <td><tt>nil</tt></td>
+  </tr>
 </table>
-Note: `app` is a Hash object within `[:dev_env][:apps]` Array.
 
 ## Usage
 
-### dev_env::pre_process
+### dev\_env::pre_process
 
 Include `dev_env` in your node's `run_list`:
 
@@ -58,7 +105,14 @@ Include `dev_env` in your node's `run_list`:
 {
   "run_list": [
     "recipe[dev_env::pre_process]"
-  ]
+  ],
+  "json": {
+    dev_env: {
+      packages: [
+         { name: "curl" },
+         { name: "apache2" },
+     ]
+  }
 }
 ```
 
@@ -77,4 +131,3 @@ Include `dev_env` in your node's `run_list`:
 ## License and Authors
 
 Author:: Taufek Johar (<taufek@gmail.com>)
-
