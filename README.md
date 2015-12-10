@@ -1,9 +1,10 @@
 # *dev_env* Cookbook
 
 A simple Cookbook to setup development environment. Here it takes care the usual procedures to setup a local development which are:
-1) Install NIX packages.
-2) Git checkout your project.
-3) Run some bash commands to setup the project.
+
+1. Install NIX packages.
+2. Git checkout your project.
+3. Run some bash commands to setup the project.
 
 It is also able to setup multiple projects.
 
