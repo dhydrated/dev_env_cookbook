@@ -13,6 +13,8 @@ Tested in Ubuntu.
 
 ## Attributes
 
+Main Attributes
+
 <table>
   <tr>
     <th>Key</th>
@@ -33,16 +35,38 @@ Tested in Ubuntu.
     <td><tt>nil</tt></td>
   </tr>
   <tr>
+    <td><tt>[:dev_env][:apps]</tt></td>
+    <td>Array</td>
+    <td>Array of Hash that contains list of project/app to be installed. <tt>app</tt> in below list will refer to the Hash object in this Array.</td>
+    <td><tt>nil</tt></td>
+  </tr>
+</table>
+
+Packages Attributes (package)
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
     <td><tt>package[:name]</tt></td>
     <td>String</td>
     <td>Name of NIX package you wish to install.</td>
     <td><tt>nil</tt></td>
   </tr>
+</table>
+
+Application Attributes (app)
+
+<table>
   <tr>
-    <td><tt>[:dev_env][:apps]</tt></td>
-    <td>Array</td>
-    <td>Array of Hash that contains list of project/app to be installed. <tt>app</tt> in below list will refer to the Hash object in this Array.</td>
-    <td><tt>nil</tt></td>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
   </tr>
   <tr>
     <td><tt>app[:checkout]</tt></td>
