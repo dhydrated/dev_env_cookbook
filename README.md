@@ -17,7 +17,7 @@ Main Attributes
 
 <table>
   <tr>
-    <th>Key</th>
+    <th width="30%">Key</th>
     <th>Type</th>
     <th>Description</th>
     <th>Default</th>
