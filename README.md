@@ -46,7 +46,7 @@ Packages Attributes (package)
 
 <table>
   <tr>
-    <th>Key</th>
+    <th width="30%">Key</th>
     <th>Type</th>
     <th>Description</th>
     <th>Default</th>
@@ -63,7 +63,7 @@ Application Attributes (app)
 
 <table>
   <tr>
-    <th>Key</th>
+    <th width="30%">Key</th>
     <th>Type</th>
     <th>Description</th>
     <th>Default</th>
