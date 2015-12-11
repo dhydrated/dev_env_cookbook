@@ -1,3 +1,3 @@
 # 0.1.0
 
-Initial release of booster-dev-cookbook
+Initial release of dev_env_cookbook
