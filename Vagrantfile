@@ -86,27 +86,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       dev_env: {
         apps: [
           {
-            checkout_path: "/vagrant/projects/fulcrum",
-            git_repo: "git@github.com:boosterllc/fulcrum.git",
+            checkout_path: "/vagrant/home/projects/sample_app",
+            git_repo: "git@github.com:railstutorial/sample_app.git",
             revision: "master",
             git_action: "checkout",
             user: "vagrant",
             post_commands: <<-EOH
-              gem install bundler
-              rake bundle install
-              rake db:setup
-              rake db:migrate
-              rake db:seed
+              touch run_post_commands
             EOH
           }
         ],
         packages: [
-          {name: "xvfb"},
-          {name: "rake"},
-          {name: "lua5.2"},
-          {name: "lua5.2-dev"},
-          {name: "vim"},
-          {name: "imagemagick"}
+          { name: "git" }
         ]
       }
     }
