@@ -15,7 +15,7 @@ Tested in Ubuntu.
 
 ### Main Attributes
 
-* `["dev_env"]["user"]` (String) = User to that will be assigned to own the `wrap-ssh4git.sh` file. This file is required to ignore the host checks when running `git clone/checkout`. Default value is `nil`.
+* `["dev_env"]["user"]` (String) = User that will be assigned to own the `wrap-ssh4git.sh` file. This file is required to ignore the host checks when running `git clone/checkout`. Default value is `nil`.
 
 * `["dev_env"]["packages"]` (Array) = Array of Hash that contains list of NIX packages to be installed. `package` in below list will refer to the Hash object in this Array. Default value is `nil`.
 
