@@ -9,6 +9,10 @@ describe package "git" do
   it { should be_installed }
 end
 
+describe gem_package "tmuxinator" do
+  it { should be_installed }
+end
+
 describe file "/vagrant/home/projects/sample_app/Gemfile" do
   it { should exist }
 end

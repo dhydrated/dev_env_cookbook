@@ -19,12 +19,19 @@ Tested in Ubuntu.
 
 * `["dev_env"]["packages"]` (Array) = Array of Hash that contains list of NIX packages to be installed. `package` in below list will refer to the Hash object in this Array. Default value is `nil`.
 
+* `["dev_env"]["gems"]` (Array) = Array of Hash that contains list of Ruby Gems to be installed. `gem` in below list will refer to the Hash object in this Array. Default value is `nil`.
+
 * `["dev_env"]["apps"]` (Array) = Array of Hash that contains list of project/app to be installed. `app` in below list will refer to the Hash object in this Array. Default value is `nil`.
 
 
 ### Packages Attributes (package)
 
 * `package["name"]` (String) = Name of NIX package you wish to install. Default value is `nil`.
+
+
+### Ruby Gems Attributes (gem)
+
+* `gem["name"]` (String) = Name of Ruby Gem you wish to install. Default value is `nil`.
 
 
 ### Application Attributes (app)
@@ -63,7 +70,11 @@ Tested in Ubuntu.
     dev_env: {
       packages: [
          { name: "curl" },
-         { name: "apache2" },
+         { name: "apache2" }
+      ],
+      gems: [
+         { name: "tmuxinator" },
+         { name: "bundler" }
       ]
     }
   }

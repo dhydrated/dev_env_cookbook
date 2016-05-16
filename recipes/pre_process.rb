@@ -2,6 +2,10 @@ node["dev_env"]["packages"].each do |package|
   package package["name"]
 end
 
+node["dev_env"]["gems"].each do |gem|
+  gem_package gem["name"]
+end
+
 directory "/tmp/vagrant-chef/.ssh" do
   owner node["dev_env"]["user"]
   recursive true
