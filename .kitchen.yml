@@ -21,6 +21,9 @@ suites:
         packages: [
           { name: "curl" }
         ],
+        gems: [
+          { name: "tmuxinator" }
+        ],
         apps: [
           {
             checkout_path: "/vagrant/home/projects/sample_app",
